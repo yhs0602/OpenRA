@@ -52,7 +52,7 @@ namespace OpenRA.Mods.Common.Traits
 		public readonly int SearchFromHarvesterRadius = 12;
 
 		[Desc("Interval to wait between searches when there are no resources nearby.")]
-		public readonly int WaitDuration = 25;
+		public readonly int WaitDuration = 75; // At least 75 ticks required for a vein to spawn resources.
 
 		[Desc("The pathfinding cost penalty applied for cells directly away from the refinery.")]
 		public readonly int ResourceRefineryDirectionPenalty = 200;
