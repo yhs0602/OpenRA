@@ -166,9 +166,17 @@ namespace OpenRA.Mods.Common.Traits
 
 			// Pick a random location with above average attractiveness.
 			var averageAttractiveness = totalAttractiveness / suitableLocations.Count;
-			return suitableLocations.Shuffle(world.LocalRandom)
-				.First(x => x.Attractiveness >= averageAttractiveness)
-				.UV.ToCPos(map);
+			var sortedLocations = suitableLocations
+				.Where(x => x.Attractiveness >= averageAttractiveness)
+				.OrderByDescending(x=> x.Attractiveness)
+				.ToList();
+			int N = 3;
+			var topLocations = sortedLocations.Take(N).ToList();
+			var (chosenLocationUV, chosenLocationAttractiveness) = topLocations[world.LocalRandom.Next(topLocations.Count)];
+			return chosenLocationUV.ToCPos(map);
+			// return suitableLocations.Shuffle(world.LocalRandom)
+			// 	.First(x => x.Attractiveness >= averageAttractiveness)
+			// 	.UV.ToCPos(map);
 		}
 
 		/// <summary>Detail scans an area, evaluating positions.</summary>
