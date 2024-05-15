@@ -89,7 +89,8 @@ Player:
 		PowerTypes: powr,apwr
 		BarracksTypes: barr,tent
 		VehiclesFactoryTypes: weap
-		ProductionTypes: barr,tent,weap
+		ProductionTypes: barr,tent,weap,afld,hpad
+		NavalProductionTypes: spen,syrd
 		SiloTypes: silo
 		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam
 		BuildingLimits:
@@ -99,6 +100,11 @@ Player:
 			kenn: 1
 			dome: 1
 			weap: 1
+			spen: 1
+			syrd: 1
+			hpad: 1
+			afld: 1
+			afld.ukraine: 1
 			atek: 1
 			stek: 1
 			fix: 1
@@ -108,6 +114,11 @@ Player:
 			kenn: 1
 			tent: 1
 			weap: 1
+			hpad: 1
+			spen: 1
+			syrd: 1
+			afld: 1
+			afld.ukraine: 1
 			pbox: 7
 			gun: 7
 			tsla: 5
@@ -321,6 +332,12 @@ Player:
 			4tnk: 25
 			ttnk: 25
 			stnk: 5
+			heli: 5
+			mh60: 5
+			mig: 5
+			yak: 5
+			ss: 5
+			msub: 5
 		UnitLimits:
 			dog: 4
 			harv: 8

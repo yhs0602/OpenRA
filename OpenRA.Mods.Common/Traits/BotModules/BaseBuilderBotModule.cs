@@ -1,4 +1,5 @@
 #region Copyright & License Information
+
 /*
  * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
@@ -7,6 +8,7 @@
  * the License, or (at your option) any later version. For more
  * information, see COPYING.
  */
+
 #endregion
 
 using System.Collections.Generic;
@@ -64,7 +66,8 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("The targeted excess power the AI tries to maintain cannot rise above this.")]
 		public readonly int MaximumExcessPower = 0;
 
-		[Desc("Increase maintained excess power by this amount for every ExcessPowerIncreaseThreshold of base buildings.")]
+		[Desc(
+			"Increase maintained excess power by this amount for every ExcessPowerIncreaseThreshold of base buildings.")]
 		public readonly int ExcessPowerIncrement = 0;
 
 		[Desc("Increase maintained excess power by ExcessPowerIncrement for every N base buildings.")]
@@ -123,7 +126,8 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Terrain types which are considered water for base building purposes.")]
 		public readonly HashSet<string> WaterTerrainTypes = new() { "Water" };
 
-		[Desc("What buildings to the AI should build.", "What integer percentage of the total base must be this type of building.")]
+		[Desc("What buildings to the AI should build.",
+			"What integer percentage of the total base must be this type of building.")]
 		public readonly Dictionary<string, int> BuildingFractions = null;
 
 		[Desc("What buildings should the AI have a maximum limit to build.")]
@@ -135,7 +139,10 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Only queue construction of a new structure when above this requirement.")]
 		public readonly int ProductionMinCashRequirement = 500;
 
-		public override object Create(ActorInitializer init) { return new BaseBuilderBotModule(init.Self, this); }
+		public override object Create(ActorInitializer init)
+		{
+			return new BaseBuilderBotModule(init.Self, this);
+		}
 	}
 
 	public class BaseBuilderBotModule : ConditionalTrait<BaseBuilderBotModuleInfo>, IGameSaveTraitData,
@@ -178,7 +185,8 @@ namespace OpenRA.Mods.Common.Traits
 			builders = new BaseBuilderQueueManager[info.BuildingQueues.Count + info.DefenseQueues.Count];
 			refineryBuildings = new ActorIndex.OwnerAndNamesAndTrait<Building>(world, info.RefineryTypes, player);
 			powerBuildings = new ActorIndex.OwnerAndNamesAndTrait<Building>(world, info.PowerTypes, player);
-			constructionYardBuildings = new ActorIndex.OwnerAndNamesAndTrait<Building>(world, info.ConstructionYardTypes, player);
+			constructionYardBuildings =
+				new ActorIndex.OwnerAndNamesAndTrait<Building>(world, info.ConstructionYardTypes, player);
 			barracksBuildings = new ActorIndex.OwnerAndNamesAndTrait<Building>(world, info.BarracksTypes, player);
 		}
 
@@ -192,15 +200,67 @@ namespace OpenRA.Mods.Common.Traits
 			var i = 0;
 
 			foreach (var building in Info.BuildingQueues)
-				builders[i++] = new BaseBuilderQueueManager(this, building, player, playerPower, playerResources, resourceLayer);
+				builders[i++] = new BaseBuilderQueueManager(this, building, player, playerPower, playerResources,
+					resourceLayer);
 
 			foreach (var defense in Info.DefenseQueues)
-				builders[i++] = new BaseBuilderQueueManager(this, defense, player, playerPower, playerResources, resourceLayer);
+				builders[i++] =
+					new BaseBuilderQueueManager(this, defense, player, playerPower, playerResources, resourceLayer);
 		}
+
+		public bool IsIsland(CPos startPosition, int maxArea)
+		{
+			var map = world.Map;
+			var visited = new HashSet<CPos>();
+			var queue = new Queue<CPos>();
+			queue.Enqueue(startPosition);
+			visited.Add(startPosition);
+
+			int landTiles = 0;
+
+			while (queue.Count > 0)
+			{
+				var pos = queue.Dequeue();
+				if (!map.Contains(pos))
+					continue;
+
+				if (Info.WaterTerrainTypes.Contains(map.GetTerrainInfo(pos).Type))
+					continue;
+
+				landTiles++;
+
+				if (landTiles > maxArea)
+					return false; // 면적 초과, 섬이 아님
+				var neighbors = new List<CPos>
+				{
+					new(pos.X + 1, pos.Y),
+					new(pos.X - 1, pos.Y),
+					new(pos.X, pos.Y + 1),
+					new(pos.X, pos.Y - 1)
+				};
+				foreach (var neighbor in neighbors)
+				{
+					if (
+						!visited.Contains(neighbor)
+						&& map.Contains(neighbor)
+						&& !Info.WaterTerrainTypes.Contains(map.GetTerrainInfo(pos).Type))
+					{
+						queue.Enqueue(neighbor);
+						visited.Add(neighbor);
+					}
+				}
+			}
+
+			return landTiles <= maxArea;
+		}
+
 
 		void IBotPositionsUpdated.UpdatedBaseCenter(CPos newLocation)
 		{
 			initialBaseCenter = newLocation;
+			// check if there is enough water nearby or it is an island
+			var isIsland = IsIsland(newLocation, 2000);
+			System.Console.WriteLine("Island: " + isIsland + "botname: " + player.PlayerName);
 		}
 
 		void IBotPositionsUpdated.UpdatedDefenseCenter(CPos newLocation)
@@ -281,9 +341,11 @@ namespace OpenRA.Mods.Common.Traits
 				if (rp.Actor.Owner != player)
 					continue;
 
-				if (rp.Trait.Path.Count == 0 || !IsRallyPointValid(rp.Trait.Path[0], rp.Actor.Info.TraitInfoOrDefault<BuildingInfo>()))
+				if (rp.Trait.Path.Count == 0 ||
+				    !IsRallyPointValid(rp.Trait.Path[0], rp.Actor.Info.TraitInfoOrDefault<BuildingInfo>()))
 				{
-					bot.QueueOrder(new Order("SetRallyPoint", rp.Actor, Target.FromCell(world, ChooseRallyLocationNear(rp.Actor)), false)
+					bot.QueueOrder(new Order("SetRallyPoint", rp.Actor,
+						Target.FromCell(world, ChooseRallyLocationNear(rp.Actor)), false)
 					{
 						SuppressVisualFeedback = true
 					});
@@ -321,8 +383,8 @@ namespace OpenRA.Mods.Common.Traits
 
 		int MinimumRefineryCount() =>
 			AIUtils.CountActorByCommonName(barracksBuildings) > 0
-			? Info.InititalMinimumRefineryCount + Info.AdditionalMinimumRefineryCount
-			: Info.InititalMinimumRefineryCount;
+				? Info.InititalMinimumRefineryCount + Info.AdditionalMinimumRefineryCount
+				: Info.InititalMinimumRefineryCount;
 
 		List<MiniYamlNode> IGameSaveTraitData.IssueTraitData(Actor self)
 		{
