@@ -9,6 +9,7 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Traits;
@@ -148,13 +149,20 @@ namespace OpenRA.Mods.Common.Traits
 		// In cases where we want to build a specific unit but don't know the queue name (because there's more than one possibility)
 		void BuildUnit(IBot bot, string name)
 		{
+			Console.WriteLine("Building unit: " + name);
 			var actorInfo = world.Map.Rules.Actors[name];
 			if (actorInfo == null)
+			{
+				Console.WriteLine("UnitBuilderBotModule: Actor not found: " + name);
 				return;
+			}
 
 			var buildableInfo = actorInfo.TraitInfoOrDefault<BuildableInfo>();
 			if (buildableInfo == null)
+			{
+				Console.WriteLine("UnitBuilderBotModule: Actor is not buildable: " + name);
 				return;
+			}
 
 			ProductionQueue queue = null;
 			foreach (var pq in buildableInfo.Queue)
@@ -168,6 +176,10 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				bot.QueueOrder(Order.StartProduction(queue.Actor, name, 1));
 				AIUtils.BotDebug("{0} decided to build {1} (external request)", queue.Actor.Owner, name);
+			}
+			else
+			{
+				Console.WriteLine("UnitBuilderBotModule: No queue found for unit: " + name);
 			}
 		}
 

@@ -11,6 +11,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Traits;
@@ -177,6 +178,9 @@ namespace OpenRA.Mods.Common.Traits
 		readonly ActorIndex.OwnerAndNamesAndTrait<Building> constructionYardBuildings;
 		readonly ActorIndex.OwnerAndNamesAndTrait<Building> barracksBuildings;
 
+		bool isIsland;
+		bool shouldUpdateIslandUnitShares = false;
+
 		public BaseBuilderBotModule(Actor self, BaseBuilderBotModuleInfo info)
 			: base(info)
 		{
@@ -258,9 +262,10 @@ namespace OpenRA.Mods.Common.Traits
 		void IBotPositionsUpdated.UpdatedBaseCenter(CPos newLocation)
 		{
 			initialBaseCenter = newLocation;
-			// check if there is enough water nearby or it is an island
-			var isIsland = IsIsland(newLocation, 2000);
+			// check if it is an island
+			isIsland = IsIsland(newLocation, 2000);
 			System.Console.WriteLine("Island: " + isIsland + "botname: " + player.PlayerName);
+			shouldUpdateIslandUnitShares = true;
 		}
 
 		void IBotPositionsUpdated.UpdatedDefenseCenter(CPos newLocation)
@@ -315,6 +320,36 @@ namespace OpenRA.Mods.Common.Traits
 			}
 
 			builders[currentBuilderIndex].Tick(bot);
+
+			if (shouldUpdateIslandUnitShares)
+			{
+				AdjustIslandUnitShares(bot);
+			}
+		}
+
+		void AdjustIslandUnitShares(IBot bot)
+		{
+			string[] navalUnits = { "ss", "msub", "dd", "ca", "pt" };
+			// Adjust the unit production share if it is an island
+			if (isIsland)
+			{
+				var requestUnitProduction =
+					player.PlayerActor.TraitsImplementing<IBotRequestUnitProduction>().ToArray();
+				var unitBuilder = requestUnitProduction.FirstEnabledTraitOrDefault();
+				if (unitBuilder != null && world.LocalRandom.Next() % 10 == 0)
+				{
+					var navalUnitType = navalUnits.Random(world.LocalRandom);
+					unitBuilder.RequestUnitProduction(bot, navalUnitType);
+					Console.WriteLine("Requested naval unit production: " + navalUnitType + "botname: " + player.PlayerName);
+				}
+				// Console.WriteLine(
+				// 	"Adjusted unit production share for island: " + isIsland + "botname: " + player.PlayerName);
+			}
+			else
+			{
+				Console.WriteLine("Not Island: " + isIsland + "botname: " + player.PlayerName);
+				shouldUpdateIslandUnitShares = false;
+			}
 		}
 
 		void IBotRespondToAttack.RespondToAttack(IBot bot, Actor self, AttackInfo e)
