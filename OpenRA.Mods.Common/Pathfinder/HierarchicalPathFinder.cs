@@ -1,4 +1,5 @@
 ﻿#region Copyright & License Information
+
 /*
  * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
@@ -7,6 +8,7 @@
  * the License, or (at your option) any later version. For more
  * information, see COPYING.
  */
+
 #endregion
 
 using System;
@@ -194,7 +196,9 @@ namespace OpenRA.Mods.Common.Pathfinder
 				Func<CPos, CPos, int> costEstimator)
 			{
 				this.abstractEdges = abstractEdges;
-				changedEdges = new Dictionary<CPos, IEnumerable<GraphConnection>>(sourceEdges.Count * 9 + (targetEdge != null ? 9 : 0));
+				changedEdges =
+					new Dictionary<CPos, IEnumerable<GraphConnection>>(sourceEdges.Count * 9 +
+					                                                   (targetEdge != null ? 9 : 0));
 				foreach (var sourceEdge in sourceEdges)
 					InsertEdgeAsBidirectional(sourceEdge, costEstimator);
 				if (targetEdge != null)
@@ -262,8 +266,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 					.Where(ActorIsBlocking)
 					.SelectMany(a =>
 						a.OccupiesSpace.OccupiedCells()
-						.Select(oc => oc.Cell)
-						.Where(c => ActorCellIsBlocking(a, c)))
+							.Select(oc => oc.Cell)
+							.Where(c => ActorCellIsBlocking(a, c)))
 					.ToHashSet();
 			}
 			else if (check != BlockedByActor.None)
@@ -329,8 +333,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 			var customMovementLayers = world.GetCustomMovementLayers();
 			gridInfos = new GridInfo[gridXs * gridYs];
 			for (var gridX = mapBounds.TopLeft.X; gridX < mapBounds.BottomRight.X; gridX += GridSize)
-				for (var gridY = mapBounds.TopLeft.Y; gridY < mapBounds.BottomRight.Y; gridY += GridSize)
-					gridInfos[GridIndex(new CPos(gridX, gridY))] = BuildGrid(gridX, gridY, customMovementLayers);
+			for (var gridY = mapBounds.TopLeft.Y; gridY < mapBounds.BottomRight.Y; gridY += GridSize)
+				gridInfos[GridIndex(new CPos(gridX, gridY))] = BuildGrid(gridX, gridY, customMovementLayers);
 		}
 
 		/// <summary>
@@ -354,8 +358,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 			for (byte gridLayer = 0; gridLayer < customMovementLayers.Length; gridLayer++)
 			{
 				if (gridLayer != 0 &&
-					(customMovementLayers[gridLayer] == null ||
-					!customMovementLayers[gridLayer].EnabledForLocomotor(locomotor.Info)))
+				    (customMovementLayers[gridLayer] == null ||
+				     !customMovementLayers[gridLayer].EnabledForLocomotor(locomotor.Info)))
 					continue;
 
 				var grid = GetGrid(new CPos(gridX, gridY, gridLayer), mapBounds);
@@ -414,7 +418,7 @@ namespace OpenRA.Mods.Common.Pathfinder
 				{
 					var src = accessibleCells.First();
 					using (var search = GetLocalPathSearch(
-						null, new[] { src }, src, customCost, null, BlockedByActor.None, false, grid, 100))
+						       null, new[] { src }, src, customCost, null, BlockedByActor.None, false, grid, 100))
 					{
 						var localCellsInRegion = search.ExpandAll();
 						var abstractCell = AbstractCellForLocalCells(localCellsInRegion, gridLayer);
@@ -450,9 +454,9 @@ namespace OpenRA.Mods.Common.Pathfinder
 			abstractGraph = new Dictionary<CPos, List<GraphConnection>>(gridXs * gridYs);
 			var customMovementLayers = world.GetCustomMovementLayers();
 			for (var gridX = mapBounds.TopLeft.X; gridX < mapBounds.BottomRight.X; gridX += GridSize)
-				for (var gridY = mapBounds.TopLeft.Y; gridY < mapBounds.BottomRight.Y; gridY += GridSize)
-					foreach (var edges in GetAbstractEdgesForGrid(gridX, gridY, customMovementLayers))
-						abstractGraph.Add(edges.Key, edges.Value);
+			for (var gridY = mapBounds.TopLeft.Y; gridY < mapBounds.BottomRight.Y; gridY += GridSize)
+				foreach (var edges in GetAbstractEdgesForGrid(gridX, gridY, customMovementLayers))
+					abstractGraph.Add(edges.Key, edges.Value);
 		}
 
 		/// <summary>
@@ -460,14 +464,15 @@ namespace OpenRA.Mods.Common.Pathfinder
 		/// within adjacent grids on the same layer. Also determines any edges available to grids on other layers via
 		/// custom movement layers.
 		/// </summary>
-		IEnumerable<KeyValuePair<CPos, List<GraphConnection>>> GetAbstractEdgesForGrid(int gridX, int gridY, ICustomMovementLayer[] customMovementLayers)
+		IEnumerable<KeyValuePair<CPos, List<GraphConnection>>> GetAbstractEdgesForGrid(int gridX, int gridY,
+			ICustomMovementLayer[] customMovementLayers)
 		{
 			var abstractEdges = new HashSet<(CPos Src, CPos Dst)>();
 			for (byte gridLayer = 0; gridLayer < customMovementLayers.Length; gridLayer++)
 			{
 				if (gridLayer != 0 &&
-					(customMovementLayers[gridLayer] == null ||
-					!customMovementLayers[gridLayer].EnabledForLocomotor(locomotor.Info)))
+				    (customMovementLayers[gridLayer] == null ||
+				     !customMovementLayers[gridLayer].EnabledForLocomotor(locomotor.Info)))
 					continue;
 
 				void AddEdgesIfMovementAllowedBetweenCells(CPos cell, CPos candidateCell)
@@ -523,7 +528,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 							continue;
 
 						var candidateCml = customMovementLayers[candidateLayer];
-						if (candidateLayer != 0 && (candidateCml == null || !candidateCml.EnabledForLocomotor(locomotor.Info)))
+						if (candidateLayer != 0 &&
+						    (candidateCml == null || !candidateCml.EnabledForLocomotor(locomotor.Info)))
 							continue;
 
 						for (var y = gridY; y < gridY + GridSize; y++)
@@ -538,13 +544,15 @@ namespace OpenRA.Mods.Common.Pathfinder
 								if (gridLayer == 0)
 								{
 									candidateCell = new CPos(cell.X, cell.Y, candidateLayer);
-									if (candidateCml.EntryMovementCost(locomotor.Info, candidateCell) == PathGraph.MovementCostForUnreachableCell)
+									if (candidateCml.EntryMovementCost(locomotor.Info, candidateCell) ==
+									    PathGraph.MovementCostForUnreachableCell)
 										continue;
 								}
 								else
 								{
 									candidateCell = new CPos(cell.X, cell.Y, 0);
-									if (gridCml.ExitMovementCost(locomotor.Info, candidateCell) == PathGraph.MovementCostForUnreachableCell)
+									if (gridCml.ExitMovementCost(locomotor.Info, candidateCell) ==
+									    PathGraph.MovementCostForUnreachableCell)
 										continue;
 								}
 
@@ -578,21 +586,23 @@ namespace OpenRA.Mods.Common.Pathfinder
 			// We don't care about the specific cost of the cell, just whether it is reachable or not.
 			// This is good because updating the table is expensive, so only having to update it when
 			// the reachability changes rather than for all costs changes saves us a lot of time.
-			if (oldCost == PathGraph.MovementCostForUnreachableCell ^ newCost == PathGraph.MovementCostForUnreachableCell)
+			if (oldCost == PathGraph.MovementCostForUnreachableCell ^
+			    newCost == PathGraph.MovementCostForUnreachableCell)
 				dirtyGridIndexes.Add(GridIndex(cell));
 		}
 
 		bool CellIsAccessible(CPos cell)
 		{
 			return locomotor.MovementCostForCell(cell) != PathGraph.MovementCostForUnreachableCell &&
-				(cellsWithBlockingActor == null || !cellsWithBlockingActor.Contains(cell));
+			       (cellsWithBlockingActor == null || !cellsWithBlockingActor.Contains(cell));
 		}
 
 		bool MovementAllowedBetweenCells(CPos accessibleSrcCell, CPos destCell)
 		{
 			return locomotor.MovementCostToEnterCell(
-				null, accessibleSrcCell, destCell, BlockedByActor.None, null) != PathGraph.MovementCostForUnreachableCell &&
-				(cellsWithBlockingActor == null || !cellsWithBlockingActor.Contains(destCell));
+				       null, accessibleSrcCell, destCell, BlockedByActor.None, null) !=
+			       PathGraph.MovementCostForUnreachableCell &&
+			       (cellsWithBlockingActor == null || !cellsWithBlockingActor.Contains(destCell));
 		}
 
 		/// <summary>
@@ -649,11 +659,13 @@ namespace OpenRA.Mods.Common.Pathfinder
 		/// </summary>
 		bool ActorIsBlocking(Actor actor)
 		{
-			var isMovable = actor.OccupiesSpace is Mobile mobile && !mobile.IsTraitDisabled && !mobile.IsTraitPaused && !mobile.IsImmovable;
+			var isMovable = actor.OccupiesSpace is Mobile mobile && !mobile.IsTraitDisabled && !mobile.IsTraitPaused &&
+			                !mobile.IsImmovable;
 			if (isMovable)
 				return false;
 
-			var isTemporaryBlocker = world.RulesContainTemporaryBlocker && actor.TraitOrDefault<ITemporaryBlocker>() != null;
+			var isTemporaryBlocker =
+				world.RulesContainTemporaryBlocker && actor.TraitOrDefault<ITemporaryBlocker>() != null;
 			if (isTemporaryBlocker)
 				return false;
 
@@ -803,7 +815,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 			// Determine an abstract path to all sources, for use in a unidirectional search.
 			var estimatedSearchSize = (abstractGraph.Count + 2) / 8;
 			using (var reverseAbstractSearch = PathSearch.ToTargetCellOverGraph(
-				fullGraph.GetConnections, locomotor, target, target, estimatedSearchSize, pathFinderOverlay?.RecordAbstractEdges(self)))
+				       fullGraph.GetConnections, locomotor, target, target, estimatedSearchSize,
+				       pathFinderOverlay?.RecordAbstractEdges(self)))
 			{
 				var sourcesWithPathableNodes = new HashSet<CPos>(sources.Count);
 				List<CPos> unpathableNodes = null;
@@ -838,9 +851,11 @@ namespace OpenRA.Mods.Common.Pathfinder
 					return PathFinder.NoPath;
 
 				using (var fromSrc = GetLocalPathSearch(
-					self, sourcesWithPathableNodes, target, customCost, ignoreActor, check, laneBias, null, heuristicWeightPercentage,
-					heuristic: Heuristic(reverseAbstractSearch, estimatedSearchSize, sourcesWithPathableNodes, unpathableNodes),
-					recorder: pathFinderOverlay?.RecordLocalEdges(self)))
+					       self, sourcesWithPathableNodes, target, customCost, ignoreActor, check, laneBias, null,
+					       heuristicWeightPercentage,
+					       heuristic: Heuristic(reverseAbstractSearch, estimatedSearchSize, sourcesWithPathableNodes,
+						       unpathableNodes),
+					       recorder: pathFinderOverlay?.RecordLocalEdges(self)))
 					return fromSrc.FindPath();
 			}
 		}
@@ -860,7 +875,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 			// If the source and target are close, see if they can be reached locally.
 			// This avoids the cost of an abstract search unless we need one.
 			const int CloseGridDistance = 2;
-			if ((target - source).LengthSquared < GridSize * GridSize * CloseGridDistance * CloseGridDistance && source.Layer == target.Layer)
+			if ((target - source).LengthSquared < GridSize * GridSize * CloseGridDistance * CloseGridDistance &&
+			    source.Layer == target.Layer)
 			{
 				var gridToSearch = new Grid(
 					new CPos(
@@ -877,8 +893,9 @@ namespace OpenRA.Mods.Common.Pathfinder
 
 				List<CPos> localPath;
 				using (var search = GetLocalPathSearch(
-					self, new[] { source }, target, customCost, ignoreActor, check, laneBias, gridToSearch, heuristicWeightPercentage,
-					recorder: pathFinderOverlay?.RecordLocalEdges(self)))
+					       self, new[] { source }, target, customCost, ignoreActor, check, laneBias, gridToSearch,
+					       heuristicWeightPercentage,
+					       recorder: pathFinderOverlay?.RecordLocalEdges(self)))
 					localPath = search.FindPath();
 
 				if (localPath.Count > 0)
@@ -899,7 +916,8 @@ namespace OpenRA.Mods.Common.Pathfinder
 			// Call the other overload which can handle this scenario.
 			var sourceAbstractCell = AbstractCellForLocalCell(source);
 			if (sourceAbstractCell == null)
-				return FindPath(self, new[] { source }, target, check, heuristicWeightPercentage, customCost, ignoreActor, laneBias, pathFinderOverlay);
+				return FindPath(self, new[] { source }, target, check, heuristicWeightPercentage, customCost,
+					ignoreActor, laneBias, pathFinderOverlay);
 
 			// If the source and target belong to different domains, there is no path.
 			RebuildDomains();
@@ -913,30 +931,35 @@ namespace OpenRA.Mods.Common.Pathfinder
 
 			// The new edges will be treated as bi-directional.
 			var fullGraph = new AbstractGraphWithInsertedEdges(
-				abstractGraph, sourceEdge != null ? new[] { sourceEdge.Value } : Array.Empty<GraphEdge>(), targetEdge, costEstimator);
+				abstractGraph, sourceEdge != null ? new[] { sourceEdge.Value } : Array.Empty<GraphEdge>(), targetEdge,
+				costEstimator);
 
 			// Determine an abstract path in both directions, for use in a bidirectional search.
 			var estimatedSearchSize = (abstractGraph.Count + 2) / 8;
 			using (var forwardAbstractSearch = PathSearch.ToTargetCellOverGraph(
-				fullGraph.GetConnections, locomotor, source, target, estimatedSearchSize, pathFinderOverlay?.RecordAbstractEdges(self)))
+				       fullGraph.GetConnections, locomotor, source, target, estimatedSearchSize,
+				       pathFinderOverlay?.RecordAbstractEdges(self)))
 			{
 				if (!forwardAbstractSearch.ExpandToTarget())
 					return PathFinder.NoPath;
 
 				using (var reverseAbstractSearch = PathSearch.ToTargetCellOverGraph(
-					fullGraph.GetConnections, locomotor, target, source, estimatedSearchSize, pathFinderOverlay?.RecordAbstractEdges(self)))
+					       fullGraph.GetConnections, locomotor, target, source, estimatedSearchSize,
+					       pathFinderOverlay?.RecordAbstractEdges(self)))
 				{
 					reverseAbstractSearch.ExpandToTarget();
 
 					using (var fromSrc = GetLocalPathSearch(
-						self, new[] { source }, target, customCost, ignoreActor, check, laneBias, null, heuristicWeightPercentage,
-						heuristic: Heuristic(reverseAbstractSearch, estimatedSearchSize, null, null),
-						recorder: pathFinderOverlay?.RecordLocalEdges(self)))
+						       self, new[] { source }, target, customCost, ignoreActor, check, laneBias, null,
+						       heuristicWeightPercentage,
+						       heuristic: Heuristic(reverseAbstractSearch, estimatedSearchSize, null, null),
+						       recorder: pathFinderOverlay?.RecordLocalEdges(self)))
 					using (var fromDest = GetLocalPathSearch(
-						self, new[] { target }, source, customCost, ignoreActor, check, laneBias, null, heuristicWeightPercentage,
-						heuristic: Heuristic(forwardAbstractSearch, estimatedSearchSize, null, null),
-						inReverse: true,
-						recorder: pathFinderOverlay?.RecordLocalEdges(self)))
+						       self, new[] { target }, source, customCost, ignoreActor, check, laneBias, null,
+						       heuristicWeightPercentage,
+						       heuristic: Heuristic(forwardAbstractSearch, estimatedSearchSize, null, null),
+						       inReverse: true,
+						       recorder: pathFinderOverlay?.RecordLocalEdges(self)))
 						return PathSearch.FindBidiPath(fromDest, fromSrc);
 				}
 			}
@@ -1175,7 +1198,7 @@ namespace OpenRA.Mods.Common.Pathfinder
 						{
 							var adjacentCell = cell + dir;
 							if (!MovementAllowedBetweenCells(cell, adjacentCell) ||
-								(unpathableNodes != null && unpathableNodes.Contains(adjacentCell)))
+							    (unpathableNodes != null && unpathableNodes.Contains(adjacentCell)))
 								continue;
 
 							// Ideally we'd choose the cheapest cell rather than just any one of them,
@@ -1187,9 +1210,14 @@ namespace OpenRA.Mods.Common.Pathfinder
 					}
 
 					if (maybeAbstractCell == null)
-						throw new Exception(
-							"The abstract path should never be searched for an unreachable point. " +
-							$"Cell {cell} failed lookup for an abstract cell.");
+					{
+						Console.WriteLine(
+							"The abstract path should never be searched for an unreachable point. ${cell} failed lookup for an abstract cell.");
+						return PathGraph.PathCostForInvalidPath;
+					}
+					// throw new Exception(
+					// 	"The abstract path should never be searched for an unreachable point. " +
+					// 	$"Cell {cell} failed lookup for an abstract cell.");
 				}
 
 				var abstractCell = maybeAbstractCell.Value;

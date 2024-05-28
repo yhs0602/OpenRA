@@ -339,8 +339,9 @@ namespace OpenRA.Mods.Common.Traits
 				if (unitBuilder != null && world.LocalRandom.Next() % 10 == 0)
 				{
 					var navalUnitType = navalUnits.Random(world.LocalRandom);
+					// bot.QueueOrder(Order.StartProduction(queue.Actor, unit.Name, 1));
 					unitBuilder.RequestUnitProduction(bot, navalUnitType);
-					Console.WriteLine("Requested naval unit production: " + navalUnitType + "botname: " + player.PlayerName);
+					// Console.WriteLine("Requested naval unit production: " + navalUnitType + "botname: " + player.PlayerName);
 				}
 				// Console.WriteLine(
 				// 	"Adjusted unit production share for island: " + isIsland + "botname: " + player.PlayerName);
