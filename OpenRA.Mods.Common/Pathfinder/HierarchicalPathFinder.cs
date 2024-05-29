@@ -1228,9 +1228,15 @@ namespace OpenRA.Mods.Common.Pathfinder
 				{
 					abstractSearch.TargetPredicate = c => c == abstractCell;
 					if (!abstractSearch.ExpandToTarget())
+					{
+						Console.WriteLine("The abstract path should never be searched for an unreachable point. " +
+						                  $"Abstract cell {abstractCell} failed to route to abstract cell.");
+						return PathGraph.PathCostForInvalidPath;
 						throw new Exception(
 							"The abstract path should never be searched for an unreachable point. " +
 							$"Abstract cell {abstractCell} failed to route to abstract cell.");
+					}
+
 					info = graph[abstractCell];
 				}
 
