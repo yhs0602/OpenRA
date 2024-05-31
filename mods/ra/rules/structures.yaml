@@ -5,7 +5,7 @@ MSLO:
 	Selectable:
 		Bounds: 2048, 1024
 	Valued:
-		Cost: 2500
+		Cost: 4500
 	Tooltip:
 		Name: actor-mslo.name
 	Buildable:
@@ -152,7 +152,7 @@ SPEN:
 	Health:
 		HP: 100000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -296,7 +296,7 @@ SYRD:
 	Health:
 		HP: 100000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1055,7 +1055,7 @@ WEAP:
 	Health:
 		HP: 150000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1189,7 +1189,7 @@ FACT:
 	Health:
 		HP: 150000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
