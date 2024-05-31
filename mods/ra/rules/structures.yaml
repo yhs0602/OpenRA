@@ -20,7 +20,7 @@ MSLO:
 	Health:
 		HP: 100000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		MinRange: 5c0
 		Range: 6c0
@@ -415,7 +415,7 @@ IRON:
 	Health:
 		HP: 100000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		MinRange: 5c0
 		Range: 6c0
@@ -991,7 +991,7 @@ ATEK:
 		Prerequisites: weap, dome, ~structures.allies, ~techlevel.high
 		Description: actor-atek.description
 	Valued:
-		Cost: 1500
+		Cost: 1800
 	Tooltip:
 		Name: actor-atek.name
 	ProvidesPrerequisite:
@@ -1003,7 +1003,7 @@ ATEK:
 	Health:
 		HP: 60000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1283,7 +1283,7 @@ PROC:
 	Health:
 		HP: 90000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1365,7 +1365,7 @@ SILO:
 	Health:
 		HP: 30000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		Range: 4c0
 	InfiltrateForCash:
@@ -1671,7 +1671,7 @@ POWR:
 	Health:
 		HP: 40000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		Range: 4c0
 	WithBuildingBib:
@@ -1711,7 +1711,7 @@ APWR:
 	Health:
 		HP: 70000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		Range: 5c0
 	WithBuildingBib:
@@ -1737,7 +1737,7 @@ STEK:
 		Prerequisites: weap, dome, ~structures.soviet, ~techlevel.high
 		Description: actor-stek.description
 	Valued:
-		Cost: 1500
+		Cost: 1800
 	Tooltip:
 		Name: actor-stek.name
 	ProvidesPrerequisite:
@@ -1749,7 +1749,7 @@ STEK:
 	Health:
 		HP: 80000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1786,7 +1786,7 @@ BARR:
 	Health:
 		HP: 60000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0
@@ -1954,7 +1954,7 @@ TENT:
 	Health:
 		HP: 60000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 5c0

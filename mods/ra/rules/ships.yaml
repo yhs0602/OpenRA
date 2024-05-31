@@ -57,7 +57,7 @@ MSUB:
 		Prerequisites: ~spen, stek, ~techlevel.high
 		Description: actor-msub.description
 	Valued:
-		Cost: 2000
+		Cost: 10000
 	Tooltip:
 		Name: actor-msub.name
 	UpdatesPlayerStatistics:
@@ -164,7 +164,7 @@ CA:
 		Prerequisites: ~syrd, atek, ~techlevel.high
 		Description: actor-ca.description
 	Valued:
-		Cost: 2400
+		Cost: 10000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
