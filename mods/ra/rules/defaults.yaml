@@ -553,7 +553,7 @@
 		TargetTypes: WaterActor, Ship, Submarine, Repair
 		RequiresCondition: !underwater
 	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine
+		TargetTypes: Underwater, Submarine, Ship, WaterActor
 		RequiresCondition: underwater
 	Cloak:
 		DetectionTypes: Underwater

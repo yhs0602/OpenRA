@@ -71,7 +71,7 @@ MIG:
 		Prerequisites: ~afld, stek, ~techlevel.high
 		Description: actor-mig.description
 	Valued:
-		Cost: 3500
+		Cost: 3000
 	Tooltip:
 		Name: actor-mig.name
 	UpdatesPlayerStatistics:
@@ -91,6 +91,10 @@ MIG:
 		LocalOffset: 0,-640,0, 0,640,0
 		LocalYaw: -40, 24
 		PauseOnCondition: !ammo
+	Armament@PRIMARY:
+		Weapon: HellfireAA
+		LocalOffset: 0,-213,-85, 0,213,-85
+		PauseOnCondition: !ammo
 	AttackAircraft:
 		FacingTolerance: 80
 		PersistentTargeting: false
@@ -105,7 +109,7 @@ MIG:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	AmmoPool:
-		Ammo: 8
+		Ammo: 12
 		AmmoCondition: ammo
 	Selectable:
 		Bounds: 1536, 1194, 0, 85
@@ -149,7 +153,7 @@ YAK:
 		Prerequisites: ~afld, ~techlevel.medium
 		Description: actor-yak.description
 	Valued:
-		Cost: 2450
+		Cost: 2000
 	Tooltip:
 		Name: actor-yak.name
 	UpdatesPlayerStatistics:
@@ -169,6 +173,10 @@ YAK:
 		LocalOffset: 256,-213,0, 256,213,0
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: DepthCharge
+		LocalOffset: 0,-100,0, 0,100,0
+		LocalYaw: 80, -80
 	AttackAircraft:
 		FacingTolerance: 80
 		PersistentTargeting: false
@@ -280,7 +288,7 @@ HELI:
 		Prerequisites: ~hpad, atek, ~techlevel.high
 		Description: actor-heli.description
 	Valued:
-		Cost: 2450
+		Cost: 2000
 	Tooltip:
 		Name: actor-heli.name
 	UpdatesPlayerStatistics:
@@ -362,7 +370,7 @@ HIND:
 		Prerequisites: ~disabled, ~hpad, ~techlevel.medium
 		Description: actor-hind.description
 	Valued:
-		Cost: 1750
+		Cost: 1500
 	Tooltip:
 		Name: actor-hind.name
 	UpdatesPlayerStatistics:
@@ -382,6 +390,10 @@ HIND:
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: DepthCharge
+		LocalOffset: 0,-100,0, 0,100,0
+		LocalYaw: 80, -80
 	AttackAircraft:
 		FacingTolerance: 80
 		PersistentTargeting: false

@@ -62,7 +62,7 @@ Maverick:
 		CruiseAltitude: 2c0
 		RangeLimit: 14c410
 	Warhead@1Dam: SpreadDamage
-		Damage: 7000
+		Damage: 8000
 		Versus:
 			None: 30
 			Wood: 90
@@ -235,7 +235,7 @@ TorpTube:
 		Speed: 85
 		TrailImage: bubbles
 		HorizontalRateOfTurn: 4
-		RangeLimit: 10c819
+		RangeLimit: 20c0
 		BoundToTerrainType: Water
 		Palette: shadow
 		MaximumLaunchAngle: 0
@@ -248,7 +248,7 @@ TorpTube:
 			Wood: 75
 			Light: 75
 			Heavy: 80
-			Concrete: 500
+			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: artillery_explosion
@@ -275,14 +275,14 @@ TorpTube:
 		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
-		Damage: 1500
+		Damage: 2000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Versus:
 			None: 80
 			Wood: 50
 			Light: 48
 			Heavy: 30
-			Concrete: 100
+			Concrete: 40
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: artillery_explosion

@@ -9,7 +9,7 @@ SS:
 		Description: actor-ss.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 52500
+		Cost: 30000
 	Tooltip:
 		Name: actor-ss.name
 	UpdatesPlayerStatistics:
@@ -59,7 +59,7 @@ MSUB:
 		Description: actor-msub.description
 		BuildDuration: 12000
 	Valued:
-		Cost: 140000
+		Cost: 60000
 	Tooltip:
 		Name: actor-msub.name
 	UpdatesPlayerStatistics:
@@ -115,7 +115,7 @@ DD:
 		Description: actor-dd.description
 		BuildDuration: 3000
 	Valued:
-		Cost: 14000
+		Cost: 12000
 	Tooltip:
 		Name: actor-dd.name
 	UpdatesPlayerStatistics:
@@ -168,13 +168,13 @@ CA:
 		Description: actor-ca.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 70000
+		Cost: 40000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 560000
+		HP: 500000
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -234,7 +234,7 @@ LST:
 		Prerequisites: ~techlevel.low
 		Description: actor-lst.description
 	Valued:
-		Cost: 700
+		Cost: 1000
 	Tooltip:
 		Name: actor-lst.name
 	UpdatesPlayerStatistics:
@@ -274,13 +274,13 @@ PT:
 		Prerequisites: ~syrd, ~techlevel.low
 		Description: actor-pt.description
 	Valued:
-		Cost: 500
+		Cost: 2500
 	Tooltip:
 		Name: actor-pt.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 20000
+		HP: 25000
 	Armor:
 		Type: Heavy
 	Mobile:
