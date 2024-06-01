@@ -146,7 +146,7 @@ TurretGun:
 			Wood: 35
 			Light: 60
 			Heavy: 25
-			Concrete: 100
+			Concrete: 80
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
 

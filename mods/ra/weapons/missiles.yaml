@@ -224,7 +224,7 @@ APTusk.stnk:
 
 TorpTube:
 	ReloadDelay: 100
-	Range: 9c0
+	Range: 20c0
 	Report: torpedo1.aud
 	ValidTargets: Water, WaterActor, Underwater, Bridge
 	Burst: 2
@@ -247,7 +247,7 @@ TorpTube:
 		Versus:
 			Wood: 75
 			Light: 75
-			Heavy: 100
+			Heavy: 80
 			Concrete: 500
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect

@@ -708,10 +708,13 @@ namespace OpenRA.Mods.Common.Traits
 					return;
 			}
 
-			var expectedRemainingCost = RemainingTime == 1 ? 0 : TotalCost * RemainingTime / Math.Max(1, TotalTime);
+			var expectedRemainingCost = RemainingTime == 1 ? 0 : (int)(TotalCost * ((double)RemainingTime / Math.Max(1, TotalTime)));
 			var costThisFrame = RemainingCost - expectedRemainingCost;
 			if (costThisFrame != 0 && !pr.TakeCash(costThisFrame, true))
+			{
+				Console.WriteLine("Insufficient funds for production item {0} ({1} remaining), remainingTime: {2} totalcost: {3} totaltime: {4} costthisframe: {5}, expectedRemainingCost: {6}", Item, RemainingCost, RemainingTime, TotalCost, TotalTime, costThisFrame, expectedRemainingCost);
 				return;
+			}
 
 			RemainingCost -= costThisFrame;
 			RemainingTime--;

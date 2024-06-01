@@ -71,7 +71,7 @@ MIG:
 		Prerequisites: ~afld, stek, ~techlevel.high
 		Description: actor-mig.description
 	Valued:
-		Cost: 2000
+		Cost: 3500
 	Tooltip:
 		Name: actor-mig.name
 	UpdatesPlayerStatistics:
@@ -149,7 +149,7 @@ YAK:
 		Prerequisites: ~afld, ~techlevel.medium
 		Description: actor-yak.description
 	Valued:
-		Cost: 1350
+		Cost: 2450
 	Tooltip:
 		Name: actor-yak.name
 	UpdatesPlayerStatistics:
@@ -280,7 +280,7 @@ HELI:
 		Prerequisites: ~hpad, atek, ~techlevel.high
 		Description: actor-heli.description
 	Valued:
-		Cost: 2000
+		Cost: 2450
 	Tooltip:
 		Name: actor-heli.name
 	UpdatesPlayerStatistics:
@@ -362,7 +362,7 @@ HIND:
 		Prerequisites: ~disabled, ~hpad, ~techlevel.medium
 		Description: actor-hind.description
 	Valued:
-		Cost: 1500
+		Cost: 1750
 	Tooltip:
 		Name: actor-hind.name
 	UpdatesPlayerStatistics:
@@ -480,7 +480,7 @@ MH60:
 		Prerequisites: ~hpad, ~techlevel.medium
 		Description: actor-mh60.description
 	Valued:
-		Cost: 1500
+		Cost: 1750
 	Tooltip:
 		Name: actor-mh60.name
 	UpdatesPlayerStatistics:

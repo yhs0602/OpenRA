@@ -8,13 +8,13 @@ SS:
 		Prerequisites: ~spen, ~techlevel.low
 		Description: actor-ss.description
 	Valued:
-		Cost: 950
+		Cost: 52500
 	Tooltip:
 		Name: actor-ss.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 25000
+		HP: 40000
 	Armor:
 		Type: Light
 	Mobile:
@@ -57,7 +57,7 @@ MSUB:
 		Prerequisites: ~spen, stek, ~techlevel.high
 		Description: actor-msub.description
 	Valued:
-		Cost: 10000
+		Cost: 140000
 	Tooltip:
 		Name: actor-msub.name
 	UpdatesPlayerStatistics:
@@ -65,7 +65,7 @@ MSUB:
 	Health:
 		HP: 40000
 	Armor:
-		Type: Light
+		Type: Heavy
 	Mobile:
 		TurnSpeed: 12
 		Speed: 44
@@ -112,13 +112,13 @@ DD:
 		Prerequisites: ~syrd, dome, ~techlevel.medium
 		Description: actor-dd.description
 	Valued:
-		Cost: 1000
+		Cost: 14000
 	Tooltip:
 		Name: actor-dd.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 40000
+		HP: 280000
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -164,13 +164,13 @@ CA:
 		Prerequisites: ~syrd, atek, ~techlevel.high
 		Description: actor-ca.description
 	Valued:
-		Cost: 10000
+		Cost: 70000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 80000
+		HP: 560000
 	Armor:
 		Type: Heavy
 	Mobile:

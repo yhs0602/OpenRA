@@ -8,8 +8,8 @@
 			None: 90
 			Wood: 75
 			Light: 60
-			Heavy: 25
-			Concrete: 100
+			Heavy: 10
+			Concrete: 40
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@Smu: LeaveSmudge
 		SmudgeType: Crater
