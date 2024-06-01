@@ -7,6 +7,7 @@ SS:
 		BuildPaletteOrder: 30
 		Prerequisites: ~spen, ~techlevel.low
 		Description: actor-ss.description
+		BuildDuration: 6000
 	Valued:
 		Cost: 52500
 	Tooltip:
@@ -56,6 +57,7 @@ MSUB:
 		BuildPaletteOrder: 60
 		Prerequisites: ~spen, stek, ~techlevel.high
 		Description: actor-msub.description
+		BuildDuration: 12000
 	Valued:
 		Cost: 140000
 	Tooltip:
@@ -63,7 +65,7 @@ MSUB:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 40000
+		HP: 80000
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -111,6 +113,7 @@ DD:
 		BuildPaletteOrder: 40
 		Prerequisites: ~syrd, dome, ~techlevel.medium
 		Description: actor-dd.description
+		BuildDuration: 3000
 	Valued:
 		Cost: 14000
 	Tooltip:
@@ -163,6 +166,7 @@ CA:
 		BuildPaletteOrder: 50
 		Prerequisites: ~syrd, atek, ~techlevel.high
 		Description: actor-ca.description
+		BuildDuration: 6000
 	Valued:
 		Cost: 70000
 	Tooltip:
@@ -205,6 +209,10 @@ CA:
 		Recoil: 171
 		RecoilRecovery: 34
 		MuzzleSequence: muzzle
+	Armament@TERTIARY:
+		Weapon: StingerAA
+		LocalOffset: 0,-100,0, 0,100,0
+		LocalYaw: 64, -64
 	AttackTurreted:
 		Turrets: primary, secondary
 		TargetFrozenActors: True
