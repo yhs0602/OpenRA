@@ -550,11 +550,10 @@
 ^Submarine:
 	Inherits: ^Ship
 	Targetable:
-		TargetTypes: WaterActor, Ship, Submarine, Repair
+		TargetTypes: WaterActor, Repair
 		RequiresCondition: !underwater
 	Targetable@UNDERWATER:
 		TargetTypes: Underwater, Submarine, Ship, WaterActor
-		RequiresCondition: underwater
 	Cloak:
 		DetectionTypes: Underwater
 		InitialDelay: 0
@@ -1236,7 +1235,7 @@
 	Tooltip:
 		Name: meta-mine-name
 	Targetable:
-		TargetTypes: GroundActor, Mine
+		TargetTypes: GroundActor, WaterActor, Mine
 	Immobile:
 		OccupiesSpace: true
 	HitShape:

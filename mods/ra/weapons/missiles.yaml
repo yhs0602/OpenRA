@@ -97,14 +97,14 @@ HellfireAA:
 	Inherits: ^AntiAirMissile
 	ReloadDelay: 30
 	MinRange: 1c256
-	Range: 4c0
+	Range: 7c0
 	Burst: 2
 	BurstDelays: 10
 	Projectile: Missile
 		Speed: 492
 		Inaccuracy: 128
 		HorizontalRateOfTurn: 100
-		RangeLimit: 7c0
+		RangeLimit: 9c0
 		CloseEnough: 0c600
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
@@ -232,7 +232,7 @@ TorpTube:
 	Projectile: Missile
 		Image: torpedo
 		Arm: 3
-		Speed: 85
+		Speed: 80
 		TrailImage: bubbles
 		HorizontalRateOfTurn: 4
 		RangeLimit: 20c0
@@ -245,10 +245,10 @@ TorpTube:
 		Damage: 18000
 		ValidTargets: WaterActor, Underwater, Bridge
 		Versus:
-			Wood: 75
-			Light: 75
-			Heavy: 80
-			Concrete: 100
+			Wood: 40
+			Light: 200
+			Heavy: 200
+			Concrete: 40
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: artillery_explosion

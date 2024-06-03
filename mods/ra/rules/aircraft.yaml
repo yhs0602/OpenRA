@@ -80,7 +80,7 @@ MIG:
 		HP: 8000
 	RevealsShroud:
 		MinRange: 11c0
-		Range: 13c0
+		Range: 14c0
 		Type: GroundPosition
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:

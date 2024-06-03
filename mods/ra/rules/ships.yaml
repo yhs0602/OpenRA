@@ -9,7 +9,7 @@ SS:
 		Description: actor-ss.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 30000
+		Cost: 12000
 	Tooltip:
 		Name: actor-ss.name
 	UpdatesPlayerStatistics:
@@ -59,7 +59,7 @@ MSUB:
 		Description: actor-msub.description
 		BuildDuration: 12000
 	Valued:
-		Cost: 60000
+		Cost: 28000
 	Tooltip:
 		Name: actor-msub.name
 	UpdatesPlayerStatistics:
@@ -115,7 +115,7 @@ DD:
 		Description: actor-dd.description
 		BuildDuration: 3000
 	Valued:
-		Cost: 12000
+		Cost: 6000
 	Tooltip:
 		Name: actor-dd.name
 	UpdatesPlayerStatistics:
@@ -129,7 +129,7 @@ DD:
 		Speed: 92
 	RevealsShroud:
 		MinRange: 4c0
-		Range: 5c0
+		Range: 6c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
@@ -168,13 +168,13 @@ CA:
 		Description: actor-ca.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 40000
+		Cost: 20000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 500000
+		HP: 400000
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -182,7 +182,7 @@ CA:
 		Speed: 44
 	RevealsShroud:
 		MinRange: 5c0
-		Range: 7c0
+		Range: 9c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 5c0
@@ -234,7 +234,7 @@ LST:
 		Prerequisites: ~techlevel.low
 		Description: actor-lst.description
 	Valued:
-		Cost: 1000
+		Cost: 700
 	Tooltip:
 		Name: actor-lst.name
 	UpdatesPlayerStatistics:
@@ -257,7 +257,7 @@ LST:
 		OpenTerrainTypes: Clear, Rough, Road, Ore, Gems, Beach
 	Cargo:
 		Types: Infantry, Vehicle
-		MaxWeight: 5
+		MaxWeight: 7
 		PassengerFacing: 0
 		LoadingCondition: notmobile
 	-Chronoshiftable:
@@ -274,26 +274,26 @@ PT:
 		Prerequisites: ~syrd, ~techlevel.low
 		Description: actor-pt.description
 	Valued:
-		Cost: 2500
+		Cost: 2000
 	Tooltip:
 		Name: actor-pt.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 25000
+		HP: 50000
 	Armor:
-		Type: Heavy
+		Type: Light
 	Mobile:
 		TurnSpeed: 28
 		Speed: 142
 	RevealsShroud:
 		MinRange: 6c0
-		Range: 8c0
+		Range: 9c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 6c0
 	Turreted:
-		TurnSpeed: 28
+		TurnSpeed: 32
 		Offset: 512,0,0
 	Armament@PRIMARY:
 		Weapon: 2Inch
@@ -308,7 +308,60 @@ PT:
 	WithSpriteTurret:
 	DetectCloaked:
 		DetectionTypes: Underwater
-		Range: 4c0
+		Range: 5c0
 	RenderDetectionCircle:
 	Selectable:
 		DecorationBounds: 1536, 1536
+
+
+NMNLY:
+    Inherits: ^Ship
+    Inherits@selection: ^SelectableSupportUnit
+    Buildable:
+        Queue: Ship
+        BuildAtProductionType: Boat
+        BuildPaletteOrder: 310
+        Prerequisites: ~techlevel.medium
+        Description: actor-mnly.description
+    Valued:
+        Cost: 2800
+    Tooltip:
+        Name: actor-mnly.name
+    UpdatesPlayerStatistics:
+        AddToArmyValue: true
+    Health:
+        HP: 30000
+    Armor:
+        Type: Heavy
+    Mobile:
+        Speed: 120
+    RevealsShroud:
+        MinRange: 4c0
+        Range: 5c0
+        RevealGeneratedShroud: False
+    RevealsShroud@GAPGEN:
+        Range: 4c0
+    Minelayer:
+        Mine: MINV
+        TileUnknownName: build-valid
+        TerrainTypes: Water
+    MineImmune:
+    AmmoPool:
+        Ammo: 10
+        RearmSound: minelay1.aud
+    DetectCloaked:
+        Range: 5c0
+        DetectionTypes: Mine
+    RenderDetectionCircle:
+    Explodes:
+        Weapon: ATMine
+    RenderSprites:
+        Image: MNLY
+    Rearmable:
+        RearmActors: spen, syrd
+    Targetable:
+        TargetTypes: WaterActor, Mine, spen, syrd
+    WithAmmoPipsDecoration:
+        Position: BottomLeft
+        Margin: 4, 3
+        RequiresSelection: true

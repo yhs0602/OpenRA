@@ -139,30 +139,31 @@ TurretGun:
 		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
-		Damage: 2000
+		Damage: 2500
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Versus:
 			None: 60
 			Wood: 35
 			Light: 60
 			Heavy: 25
-			Concrete: 40
+			Concrete: 30
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
 
 2Inch:
 	Inherits: ^Cannon
-	ReloadDelay: 60
+	ReloadDelay: 40
 	Range: 5c512
 	Report: cannon2.aud
 	InvalidTargets: Underwater
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
-		Damage: 2500
+		Damage: 3000
 		Versus:
 			None: 28
 			Wood: 72
 			Light: 72
+			Heavy: 48
 			Concrete: 48
 
 Grenade:
