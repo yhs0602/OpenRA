@@ -232,9 +232,9 @@ TorpTube:
 	Projectile: Missile
 		Image: torpedo
 		Arm: 3
-		Speed: 80
+		Speed: 120
 		TrailImage: bubbles
-		HorizontalRateOfTurn: 4
+		HorizontalRateOfTurn: 3
 		RangeLimit: 20c0
 		BoundToTerrainType: Water
 		Palette: shadow
@@ -242,7 +242,7 @@ TorpTube:
 		CruiseAltitude: 0
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
-		Damage: 20000
+		Damage: 15000
 		ValidTargets: WaterActor, Underwater, Bridge
 		Versus:
 			Wood: 40

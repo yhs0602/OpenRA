@@ -23,7 +23,7 @@ SS:
 		Speed: 78
 	RevealsShroud:
 		MinRange: 5c0
-		Range: 8c0
+		Range: 15c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 5c0
@@ -40,7 +40,7 @@ SS:
 		ValidTargets: WaterActor, Underwater
 	DetectCloaked:
 		DetectionTypes: Underwater
-		Range: 5c0
+		Range: 8c0
 	RenderDetectionCircle:
 	Explodes:
 		Weapon: UnitExplodeSubmarine
@@ -73,7 +73,7 @@ MSUB:
 		Speed: 44
 	RevealsShroud:
 		MinRange: 5c0
-		Range: 8c0
+		Range: 15c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 5c0
@@ -115,7 +115,7 @@ DD:
 		Description: actor-dd.description
 		BuildDuration: 3000
 	Valued:
-		Cost: 6000
+		Cost: 5500
 	Tooltip:
 		Name: actor-dd.name
 	UpdatesPlayerStatistics:
@@ -168,7 +168,7 @@ CA:
 		Description: actor-ca.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 20000
+		Cost: 18000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
@@ -350,7 +350,7 @@ NMNLY:
         Ammo: 10
         RearmSound: minelay1.aud
     DetectCloaked:
-        Range: 5c0
+        Range: 10c0
         DetectionTypes: Mine
     RenderDetectionCircle:
     Explodes:
