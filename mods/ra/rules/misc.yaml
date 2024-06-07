@@ -15,6 +15,13 @@ MINP:
 	Explodes:
 		Weapon: APMine
 
+NMINV:
+	Inherits: MINV
+	Interactable:
+		Bounds: 2048, 2048
+	Explodes:
+		Weapon: APMine
+
 CRATE:
 	Inherits: ^Crate
 	GiveCashCrateAction:

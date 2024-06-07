@@ -139,12 +139,12 @@ TurretGun:
 		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
-		Damage: 2500
+		Damage: 3000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Versus:
-			None: 60
-			Wood: 35
-			Light: 60
+			None: 80
+			Wood: 40
+			Light: 80
 			Heavy: 25
 			Concrete: 30
 	Warhead@4EffWater: CreateEffect

@@ -1407,7 +1407,7 @@ HPAD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 120
-		Prerequisites: dome, ~structures.allies, ~techlevel.medium
+		Prerequisites: dome, ~techlevel.medium
 		Description: actor-hpad.description
 	Valued:
 		Cost: 500
@@ -1494,7 +1494,7 @@ AFLD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 130
-		Prerequisites: dome, ~structures.soviet, ~techlevel.medium, ~!structures.ukraine
+		Prerequisites: dome, ~techlevel.medium, ~!structures.ukraine
 		Description: actor-afld.description
 	Valued:
 		Cost: 500

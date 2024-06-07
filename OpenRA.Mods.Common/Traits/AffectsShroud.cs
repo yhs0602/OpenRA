@@ -36,9 +36,9 @@ namespace OpenRA.Mods.Common.Traits
 	public abstract class AffectsShroud : ConditionalTrait<AffectsShroudInfo>, ISync, INotifyAddedToWorld,
 		INotifyRemovedFromWorld, INotifyMoving, INotifyCenterPositionChanged, ITick
 	{
-		static readonly PPos[] NoCells = Array.Empty<PPos>();
+		protected static readonly PPos[] NoCells = Array.Empty<PPos>();
 
-		readonly HashSet<PPos> footprint;
+		protected readonly HashSet<PPos> footprint;
 
 		[Sync]
 		CPos cachedLocation;
@@ -61,7 +61,7 @@ namespace OpenRA.Mods.Common.Traits
 				footprint = new HashSet<PPos>();
 		}
 
-		PPos[] ProjectedCells(Actor self)
+		protected virtual PPos[] ProjectedCells(Actor self)
 		{
 			var map = self.World.Map;
 			var minRange = Info.MinRange;

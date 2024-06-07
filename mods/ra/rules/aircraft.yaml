@@ -101,8 +101,8 @@ MIG:
 		OpportunityFire: False
 	Aircraft:
 		CruiseAltitude: 2560
-		TurnSpeed: 16
-		Speed: 223
+		TurnSpeed: 20
+		Speed: 240
 		RepulsionSpeed: 40
 		MaximumPitch: 56
 	AutoTarget:
@@ -142,6 +142,10 @@ MIG:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: aircraft.upgraded
+	JamsMissiles:
+		Range: 3c0
+		DeflectionRelationships: Neutral, Enemy
+		Chance: 50
 
 YAK:
 	Inherits: ^Plane
@@ -184,7 +188,7 @@ YAK:
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 16
-		Speed: 178
+		Speed: 190
 		RepulsionSpeed: 40
 		MaximumPitch: 56
 	AutoTarget:
@@ -194,6 +198,9 @@ YAK:
 		Ammo: 18
 		ReloadDelay: 11
 		AmmoCondition: ammo
+	DetectCloaked:
+		DetectionTypes: Underwater
+		Range: 4c0
 	WithMuzzleOverlay:
 	Contrail:
 		Offset: -853,0,0
@@ -402,6 +409,9 @@ HIND:
 	Aircraft:
 		TurnSpeed: 16
 		Speed: 112
+	DetectCloaked:
+		DetectionTypes: Underwater
+		Range: 5c0
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire

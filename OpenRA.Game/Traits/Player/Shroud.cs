@@ -243,7 +243,7 @@ namespace OpenRA.Traits
 			}
 		}
 
-		public static IEnumerable<PPos> ProjectedCellsInRange(Map map, WPos pos, WDist minRange, WDist maxRange, int maxHeightDelta = -1)
+		public static IEnumerable<PPos> ProjectedCellsInRange(Map map, WPos pos, WDist minRange, WDist maxRange, int maxHeightDelta = -1, bool onlyWater = false)
 		{
 			// Account for potential extra half-cell from odd-height terrain
 			var r = (maxRange.Length + 1023 + 512) / 1024;
@@ -260,6 +260,12 @@ namespace OpenRA.Traits
 				var dist = (map.CenterOfCell(c) - projectedPos).HorizontalLengthSquared;
 				if (dist <= maxLimit && (dist == 0 || dist > minLimit))
 				{
+					var terrainInfo = map.GetTerrainInfo(c);
+					if (terrainInfo.Type is not ("Water" or "Beach") && onlyWater)
+					{
+						continue;
+					}
+
 					var puv = (PPos)c.ToMPos(map);
 					if (maxHeightDelta < 0 || map.ProjectedHeight(puv) < projectedHeight + maxHeightDelta)
 						yield return puv;
