@@ -9,7 +9,7 @@ SS:
 		Description: actor-ss.description
 		BuildDuration: 5000
 	Valued:
-		Cost: 10000
+		Cost: 8000
 	Tooltip:
 		Name: actor-ss.name
 	UpdatesPlayerStatistics:
@@ -59,7 +59,7 @@ MSUB:
 		Description: actor-msub.description
 		BuildDuration: 12000
 	Valued:
-		Cost: 23000
+		Cost: 21000
 	Tooltip:
 		Name: actor-msub.name
 	UpdatesPlayerStatistics:
@@ -116,7 +116,7 @@ DD:
 		Description: actor-dd.description
 		BuildDuration: 3000
 	Valued:
-		Cost: 5500
+		Cost: 4500
 	Tooltip:
 		Name: actor-dd.name
 	UpdatesPlayerStatistics:
@@ -169,7 +169,7 @@ CA:
 		Description: actor-ca.description
 		BuildDuration: 6000
 	Valued:
-		Cost: 18000
+		Cost: 16000
 	Tooltip:
 		Name: actor-ca.name
 	UpdatesPlayerStatistics:
@@ -280,7 +280,7 @@ PT:
 		Prerequisites: ~syrd, ~techlevel.low
 		Description: actor-pt.description
 	Valued:
-		Cost: 2000
+		Cost: 1800
 	Tooltip:
 		Name: actor-pt.name
 	UpdatesPlayerStatistics:
@@ -330,7 +330,7 @@ NMNLY:
         Prerequisites: ~techlevel.medium
         Description: actor-mnly.description
     Valued:
-        Cost: 2800
+        Cost: 2500
     Tooltip:
         Name: actor-mnly.name
     UpdatesPlayerStatistics:

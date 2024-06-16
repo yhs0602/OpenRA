@@ -142,25 +142,25 @@ namespace OpenRA.Mods.Common.Traits
 
 			if (unit == null)
 				return;
-			Console.WriteLine("Building random unit: " + unit.Name + " in queue: " + queue.Actor.Info.Name + " (random)");
+			// Console.WriteLine("Building random unit: " + unit.Name + " in queue: " + queue.Actor.Info.Name + " (random)");
 			bot.QueueOrder(Order.StartProduction(queue.Actor, unit.Name, 1));
 		}
 
 		// In cases where we want to build a specific unit but don't know the queue name (because there's more than one possibility)
 		void BuildUnit(IBot bot, string name)
 		{
-			Console.WriteLine("Building requested unit: " + name);
+			// Console.WriteLine("Building requested unit: " + name);
 			var actorInfo = world.Map.Rules.Actors[name];
 			if (actorInfo == null)
 			{
-				Console.WriteLine("UnitBuilderBotModule: Actor not found: " + name);
+				// Console.WriteLine("UnitBuilderBotModule: Actor not found: " + name);
 				return;
 			}
 
 			var buildableInfo = actorInfo.TraitInfoOrDefault<BuildableInfo>();
 			if (buildableInfo == null)
 			{
-				Console.WriteLine("UnitBuilderBotModule: Actor is not buildable: " + name);
+				// Console.WriteLine("UnitBuilderBotModule: Actor is not buildable: " + name);
 				return;
 			}
 
@@ -176,11 +176,11 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				bot.QueueOrder(Order.StartProduction(queue.Actor, name, 1));
 				AIUtils.BotDebug("{0} decided to build {1} (external request)", queue.Actor.Owner, name);
-				Console.WriteLine("UnitBuilderBotModule: Building requested unit: " + name + " in queue: " + queue.Info.InstanceName);
+				// Console.WriteLine("UnitBuilderBotModule: Building requested unit: " + name + " in queue: " + queue.Info.InstanceName);
 			}
 			else
 			{
-				Console.WriteLine("UnitBuilderBotModule: No queue found for unit: " + name);
+				// Console.WriteLine("UnitBuilderBotModule: No queue found for unit: " + name);
 			}
 		}
 

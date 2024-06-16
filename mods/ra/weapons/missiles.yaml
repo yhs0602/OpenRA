@@ -62,7 +62,7 @@ Maverick:
 		CruiseAltitude: 2c0
 		RangeLimit: 14c410
 	Warhead@1Dam: SpreadDamage
-		Damage: 8000
+		Damage: 12000
 		Versus:
 			None: 30
 			Wood: 90
@@ -107,7 +107,7 @@ HellfireAA:
 		RangeLimit: 9c0
 		CloseEnough: 0c600
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 4000
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion_air
 

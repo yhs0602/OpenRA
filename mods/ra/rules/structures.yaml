@@ -36,7 +36,7 @@ MSLO:
 		PauseOnCondition: disabled
 		Cursor: nuke
 		Icon: abomb
-		ChargeInterval: 13500
+		ChargeInterval: 27000
 		Name: actor-mslo.nukepower-name
 		Description: actor-mslo.nukepower-description
 		BeginChargeSpeechNotification: AbombPrepping
@@ -69,7 +69,7 @@ MSLO:
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
 	Power:
-		Amount: -150
+		Amount: -500
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	WithSupportPowerActivationAnimation:

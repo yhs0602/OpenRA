@@ -109,7 +109,7 @@ MIG:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	AmmoPool:
-		Ammo: 12
+		Ammo: 8
 		AmmoCondition: ammo
 	Selectable:
 		Bounds: 1536, 1194, 0, 85
@@ -200,7 +200,7 @@ YAK:
 		AmmoCondition: ammo
 	DetectCloaked:
 		DetectionTypes: Underwater
-		Range: 4c0
+		Range: 5c0
 	WithMuzzleOverlay:
 	Contrail:
 		Offset: -853,0,0
@@ -338,7 +338,7 @@ HELI:
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
-		Ammo: 8
+		Ammo: 6
 		AmmoCondition: ammo
 	SpawnActorOnDeath:
 		Actor: HELI.Husk
@@ -411,7 +411,7 @@ HIND:
 		Speed: 112
 	DetectCloaked:
 		DetectionTypes: Underwater
-		Range: 5c0
+		Range: 6c0
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -422,7 +422,7 @@ HIND:
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
-		Ammo: 24
+		Ammo: 16
 		ReloadDelay: 8
 		AmmoCondition: ammo
 	WithMuzzleOverlay:
